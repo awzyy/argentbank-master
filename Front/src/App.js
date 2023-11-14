@@ -1,14 +1,30 @@
 import './App.css';
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-import Dashboard from "./pages/Dashboard";
+import Profile from "./pages/Dashboard";
+import Error from "./pages/Error";
+import React from 'react';
+import store from "./redux/store";
+
 
 // Importing routing functions from React Router
 import {
   createBrowserRouter,
   RouterProvider,
+  Navigate,
 } from "react-router-dom";
 
+
+const ProtectedRoute = () => {
+  const state = store.getState();
+  const isAuthenticated = state.auth.token !== null;
+
+  if (!isAuthenticated) {
+    return <Navigate to="/login" />;
+  }
+
+  return <Profile />;
+};
 
 const router = createBrowserRouter([
   {
@@ -19,10 +35,15 @@ const router = createBrowserRouter([
     path: "/login",
     element: <Login />,
   },
-  {
-    path: "/dashboard",
-    element: <Dashboard />,
+    {
+    path: "/profile",
+    element: <ProtectedRoute />,
   },
+ {
+    path: "/*",
+    element: <Error />,
+  },
+
 ])
 
 function App() {
@@ -34,5 +55,4 @@ function App() {
 }
 
 export default App;
-
 
