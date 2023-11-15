@@ -1,14 +1,14 @@
 const initialState = {
-    token: null, //token initially empty
+    token: null,
     error: null,
   };
   
-  const authReducer = (state = initialState, action) => { // Use a switch instruction to determine how to update the state according to the action
+  const authReducer = (state = initialState, action) => {
     switch (action.type) {
       case 'LOGIN':
         return {
           ...state,
-          token: action.payload.token, // Update token with new token from action
+          token: action.payload.token,
           error: null
         };
       case 'AUTH_ERROR':
@@ -24,7 +24,7 @@ const initialState = {
           error:null,
           }
       default:
-        return state; // Simply returns the current state without modifying it
+        return state; 
     }
   };
   

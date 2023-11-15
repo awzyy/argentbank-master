@@ -13,10 +13,7 @@ function Login() {
   const navigate = useNavigate();
    const error = useSelector((state) => state.auth.error)
 
-
-  // Function called when the user validates the form
   const handleSubmit = (userData) => {
-    // call the action to handle the connexion
     dispatch(login(userData));
   };
 

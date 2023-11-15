@@ -21,7 +21,6 @@ export const login = (userData) => {
           });
           localStorage.setItem('token', token);
         } else {
-          // Handle errors
           dispatch({
             type: 'AUTH_ERROR',
             payload: {
